@@ -8,6 +8,13 @@ const AllProductsQuery = gql `
         node {
           id
           title
+          variants(first: 1){
+            edges{
+              node{
+                price
+              }
+            }
+          }
         }
       }
     }
