@@ -1,13 +1,11 @@
 import React from 'react';
 import {Switch, Route, withRouter} from 'react-router';
 import RoutePropagator from '@shopify/react-shopify-app-route-propagator';
-import {AppProvider} from '@shopify/polaris';
-
 const Propagator = withRouter(RoutePropagator);
 
-import Home from './Home';
-import Settings from './Settings';
-import NotFound from './NotFound';
+import Home from './routes/Home.js';
+import Settings from './routes/Settings.js';
+import NotFound from './routes/NotFound.js';
 
 export default function() {
   return (
