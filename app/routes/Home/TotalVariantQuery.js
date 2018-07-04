@@ -1,13 +1,12 @@
 import{gql} from 'apollo-boost';
 
-const AllProductsQuery = gql `
+const TotalVariantQuery = gql `
 {
   shop {
     products(first:10) {
       edges {
         node {
-          id
-          title
+          totalVariants
         }
       }
     }
@@ -15,4 +14,4 @@ const AllProductsQuery = gql `
 }
 `;
 
-export default AllProductsQuery;
+export default TotalVariantQuery;

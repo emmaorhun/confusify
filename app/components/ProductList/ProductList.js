@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AllProductsQuery from './AllProductsQuery'
 import ApolloClient, {gql} from 'apollo-boost';
-import {ApolloProvider, Query} from 'react-apollo';
+import {ApolloProvider, Query, Mutation} from 'react-apollo';
 import {
   AppProvider,
   Page,
@@ -12,17 +12,48 @@ import {
   SkeletonBodyText,
   SkeletonDisplayText,
   SkeletonPage,
+  Button,
   TextContainer,
   Layout
 } from '@shopify/polaris';
 
 export default function ProductList() {
 
+  const MODIFY_PRODUCT = gql`
+    mutation changeTitle($id: Id, $title: Title) {
+      product(id: $id, title: $title) {
+        id
+        title
+    }
+  }
+`;
+
+String.prototype.shuffle = function () {
+    var a = this.split(""),
+        n = a.length;
+
+    for(var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+    return a.join("");
+}
+
   const client = new ApolloClient({
     fetchOptions: {
       credentials: 'include'
     }
   });
+
+  function changeTitle(id, title){
+    return(  <ApolloProvider client={client}>
+        <Mutation query={MODIFY_PRODUCT}>
+
+        </Mutation>
+    </ApolloProvider>)
+  }
 
   return (<AppProvider>
     <ApolloProvider client={client}>
@@ -58,12 +89,14 @@ export default function ProductList() {
                 }} items={products} renderItem={(item) => {
                   const {id, title, price} = item.node;
                   const media = <Avatar customer="customer" size="medium" name={title}/>;
-
                   return (<ResourceList.Item id={id} media={media} accessibilityLabel={`View details for ${title}`}>
                     <h3>
                       <TextStyle variation="strong">{title}</TextStyle>
                     </h3>
-                    <div>{price}</div>
+                    <Button onClick={
+                      ()=>console.log('BEEPBEEP')
+
+                    }>Work some magic</Button>
                   </ResourceList.Item>);
                 }}/>
             </Card>);

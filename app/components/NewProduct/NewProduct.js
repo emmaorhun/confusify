@@ -20,23 +20,24 @@ class NewProduct extends React.Component {
       const {title} = this.state;
 
       return (
+        <Card sectioned>
         <Form onSubmit={this.handleSubmit}>
           <FormLayout>
-            <TextField
-              value={title}
-              onChange={this.handleChange('title')}
-              label="Title"
-              type="text"
-              helpText={
-                <span>
-                  This will be the name of your product.
-                </span>
-              }
-            />
-
-            <Button submit>Submit</Button>
-          </FormLayout>
-        </Form>
+              <TextField
+                value={title}
+                onChange={this.handleChange('title')}
+                label="Title"
+                type="text"
+                helpText={
+                  <span>
+                    This will be the name of your product... Hehe...
+                  </span>
+                }
+              />
+              <Button submit>Submit</Button>
+            </FormLayout>
+          </Form>
+        </Card>
       );
     }
 

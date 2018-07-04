@@ -18,7 +18,7 @@ export default function Home() {
 
   return (<AppProvider>
       <ApolloProvider client={client}>
-      <Page title="Home" secondaryActions={[{content: 'Settings', url:'/settings'}, {content: 'New Product', url: '/newproduct' }]}>
+      <Page title="Home" secondaryActions={[{content: 'Settings', url:'/settings'}, {content: 'New Product', url: '/createproduct' }]}>
         <Query query={ShopNameQuery}>{
           ({loading, error, data}) => {
             if (loading)
@@ -30,6 +30,7 @@ export default function Home() {
           }
         }
         </Query>
+
         <ProductList />
       </Page>
     </ApolloProvider>
