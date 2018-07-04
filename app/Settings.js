@@ -1,9 +1,19 @@
 import React from 'react';
+import {
+  AppProvider,
+  Page,
+  Card,
+  Button,
+  ResourceList,
+  TextStyle,
+  Avatar,
+} from '@shopify/polaris';
 
 export default function Settings() {
   return (
-    <div>
-      <h1>Settings</h1>
-    </div>
+    <AppProvider>
+      <Page title='Settings'>
+      </Page>
+    </AppProvider>
   )
 }

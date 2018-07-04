@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route, withRouter} from 'react-router';
 import RoutePropagator from '@shopify/react-shopify-app-route-propagator';
+import {AppProvider} from '@shopify/polaris';
 
 const Propagator = withRouter(RoutePropagator);
 
