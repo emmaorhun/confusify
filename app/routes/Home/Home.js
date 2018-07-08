@@ -18,7 +18,7 @@ export default function Home() {
 
   return (<AppProvider>
       <ApolloProvider client={client}>
-      <Page title="Home" secondaryActions={[{content: 'Settings', url:'/settings'}, {content: 'New Product', url: '/createproduct' }]}>
+      <Page title="Home" secondaryActions={[{content: 'Home', url:'/'},{content: 'Settings', url:'/settings'}, {content: 'New Product', url: '/createproduct' }]}>
         <Query query={ShopNameQuery}>{
           ({loading, error, data}) => {
             if (loading)
@@ -26,7 +26,7 @@ export default function Home() {
             if (error)
               return `Error! ${error.message}`;
             const storeName = data.shop.name;
-            return(<Heading>Let's get {storeName} down to business!</Heading>);
+            return(<Heading>Let's get your shop, {storeName}, down to business!</Heading>);
           }
         }
         </Query>

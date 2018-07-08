@@ -28,6 +28,7 @@ export default function ProductList() {
   }
 `;
 
+//https://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript
 String.prototype.shuffle = function () {
     var a = this.split(""),
         n = a.length;
@@ -63,7 +64,10 @@ String.prototype.shuffle = function () {
             if (loading)
               return (<div>
                     <Card sectioned="sectioned">
+                    <TextContainer>
+                      <SkeletonDisplayText size="small"/>
                       <SkeletonBodyText/>
+                    </TextContainer>
                     </Card>
                     <Card sectioned="sectioned">
                       <TextContainer>
@@ -86,7 +90,7 @@ String.prototype.shuffle = function () {
               <ResourceList resourceName={{
                   singular: 'product',
                   plural: 'products'
-                }} items={products} renderItem={(item) => {
+                }} showHeader={true} items={products} renderItem={(item) => {
                   const {id, title, price} = item.node;
                   const media = <Avatar customer="customer" size="medium" name={title}/>;
                   return (<ResourceList.Item id={id} media={media} accessibilityLabel={`View details for ${title}`}>
@@ -94,7 +98,7 @@ String.prototype.shuffle = function () {
                       <TextStyle variation="strong">{title}</TextStyle>
                     </h3>
                     <Button onClick={
-                      ()=>console.log('BEEPBEEP')
+                      ()=>console.log(title.shuffle())
 
                     }>Work some magic</Button>
                   </ResourceList.Item>);

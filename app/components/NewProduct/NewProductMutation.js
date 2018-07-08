@@ -1,6 +1,6 @@
 import {gql} from 'apollo-boost';
 
-const NewProductQuery = gql`
+const NewProductMutation = gql`
   mutation CreateProduct($product: ProductInput!) {
     productCreate(input: $product) {
       product {
@@ -11,4 +11,4 @@ const NewProductQuery = gql`
   }
 `;
 
-export default NewProductQuery;
+export default NewProductMutation;
