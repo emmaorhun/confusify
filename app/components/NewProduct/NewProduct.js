@@ -1,8 +1,18 @@
 import * as React from 'react';
-import NewProductMutation from './NewProductMutation'
 import ApolloClient, {gql} from 'apollo-boost';
-import {ApolloProvider, Mutation, Query} from 'react-apollo';
+import {ApolloProvider, Mutation, Query, graphql} from 'react-apollo';
 import {Form, FormLayout, Card, TextField, Button} from '@shopify/polaris';
+
+const NEW_PRODUCT_MUTATION = gql `
+  mutation CreateProduct($product: ProductInput!) {
+    productCreate(input: $product) {
+      product {
+        id
+        title
+      }
+    }
+  }
+`;
 
 class NewProduct extends React.Component {
 
@@ -11,66 +21,60 @@ class NewProduct extends React.Component {
     price: 0
   };
 
+  handleChange = (field) => {
+    return(value) => this.setState({[field]: value});
+  };
+
   render() {
+
+    const client = new ApolloClient({
+      fetchOptions: {
+        credentials: 'include'
+      }
+    });
 
     const {title, price} = this.state;
 
-    handleChange = (field) => {
-      return(value) => this.setState({[field]: value});
-    };
+    function mutate(createProduct) {
+      const productInput = {
+        title: title
+      };
 
-    return (<Card sectioned="sectioned">
-      <Form onSubmit={this.handleSubmit}>
-        <FormLayout>
-          <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product ...Hehe ...</span>}/>
-          <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Do not even worry about the currency </span>}/>
-          <Button submit="submit">Submit</Button>
-        </FormLayout>
-      </Form>
-    </Card>);
-
-
-
-    handleSubmit = (event) => {
-      console.log(this.state.title);
-
-      const client = new ApolloClient({
-        fetchOptions: {
-          credentials: 'include'
-        }
+      createProduct({
+        variables: {product: productInput},
       });
 
-      <ApolloProvider client={client}>
-        <Mutation mutation={NewProductMutation}>
-          {
-            (createProduct, mutationResults) => {
-              const loading = mutationResults.loading && <p>loading...
-              </p>;
+      console.log("YUP");
+    }
 
-              const error = mutationResults.error && <p>error creating product</p>;
+    return (<ApolloProvider client={client}>
 
-              const success = mutationResults.data && (<p>
-                successfully created &nbsp; {mutationResults.data.productCreate.product.title}
-              </p>);
+      <Mutation mutation={NEW_PRODUCT_MUTATION}>
+        {
+          (createProduct, mutationResults) => {
+            const loading = mutationResults.loading && <p>loading...
+            </p>;
 
-              const productInput = {
-                title: this.state.title
-              };
+            const error = mutationResults.error && <p>error creating product</p>;
 
-              createProduct({
-                variables: {
-                  product: productInput
-                }
-              });
+            const success = mutationResults.data && (<p>
+              successfully created &nbsp; {mutationResults.data.productCreate.product.title}
+            </p>);
 
-              {loading} {error} {success}
+            return (<Card sectioned="sectioned">
+              <Form onSubmit={this.handleSubmit}>
+                <FormLayout>
+                  <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product ...Hehe ...</span>}/>
+                  <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Do not even worry about the currency </span>}/>
+                  <Button onClick={() => mutate(createProduct)}>Submit</Button>
+                </FormLayout>
+              </Form>
+            </Card>)
           }
         }
+      </Mutation>
+    </ApolloProvider>);
 
-          );
-        </Mutation>
-      </ApolloProvider>
-    };
   }
 }
 export default NewProduct;
