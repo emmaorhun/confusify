@@ -9,6 +9,7 @@ const NEW_PRODUCT_MUTATION = gql `
       product {
         id
         title
+        description
       }
     }
   }
@@ -18,7 +19,8 @@ class NewProduct extends React.Component {
 
   state = {
     title: '',
-    price: 0
+    price: 0,
+    description: ''
   };
 
   handleChange = (field) => {
@@ -33,11 +35,12 @@ class NewProduct extends React.Component {
       }
     });
 
-    const {title, price} = this.state;
+    const { title, price, description } = this.state;
 
     function mutate(createProduct) {
       const productInput = {
-        title: title
+        title: title,
+        description: description
       };
 
       createProduct({
@@ -66,6 +69,7 @@ class NewProduct extends React.Component {
                 <FormLayout>
                   <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product ...Hehe ...</span>}/>
                   <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Do not even worry about the currency </span>}/>
+                  <TextField value={description} multiline={5} label="Description" type="text" onChange={this.handleChange('description')} helpText={<span> You might want to remember what your intentions were </span>}/>
                   <Button onClick={() => mutate(createProduct)}>Submit</Button>
                 </FormLayout>
               </Form>
