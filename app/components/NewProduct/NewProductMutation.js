@@ -13,4 +13,4 @@ const NEW_PRODUCT_MUTATION = gql`
   }
 `;
 
-export default graphql(NEW_PRODUCT_MUTATION, {name: 'createProduct'})(NewProduct);
+export default NEW_PRODUCT_MUTATION;
