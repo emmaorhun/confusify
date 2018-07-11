@@ -19,15 +19,6 @@ import {
 
 export default function ProductList() {
 
-  const MODIFY_PRODUCT = gql`
-    mutation changeTitle($id: Id, $title: Title) {
-      product(id: $id, title: $title) {
-        id
-        title
-    }
-  }
-`;
-
 //https://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript
 String.prototype.shuffle = function () {
     var a = this.split(""),
@@ -48,13 +39,6 @@ String.prototype.shuffle = function () {
     }
   });
 
-  function changeTitle(id, title){
-    return(  <ApolloProvider client={client}>
-        <Mutation query={MODIFY_PRODUCT}>
-
-        </Mutation>
-    </ApolloProvider>)
-  }
 
   return (<AppProvider>
     <ApolloProvider client={client}>

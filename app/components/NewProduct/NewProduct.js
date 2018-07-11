@@ -2,7 +2,14 @@ import * as React from 'react';
 import ApolloClient, {gql} from 'apollo-boost';
 import NEW_PRODUCT_MUTATION from './NewProductMutation'
 import {ApolloProvider, Mutation, Query, graphql} from 'react-apollo';
-import {Form, FormLayout, Card, TextField, Button} from '@shopify/polaris';
+import {
+  Form,
+  FormLayout,
+  Card,
+  TextField,
+  Button,
+  Banner
+} from '@shopify/polaris';
 
 class NewProduct extends React.Component {
 
@@ -24,18 +31,21 @@ class NewProduct extends React.Component {
       }
     });
 
-    const { title, price, description } = this.state;
+    const {title, price, description} = this.state;
 
     function mutate(createProduct, mutationResults) {
       const productInput = {
-        title: title
+        title: description,
+        bodyHtml: title
       };
 
       createProduct({
-        variables: {product: productInput},
+        variables: {
+          product: productInput
+        }
       });
 
-      console.log("YUP");
+      console.log(productInput);
     }
 
     return (<ApolloProvider client={client}>
@@ -43,14 +53,18 @@ class NewProduct extends React.Component {
       <Mutation mutation={NEW_PRODUCT_MUTATION}>
         {
           (createProduct, mutationResults) => {
-            const loading = mutationResults.loading && <p>loading...
-            </p>;
 
-            const error = mutationResults.error && <p>error creating product</p>;
+            const loading = mutationResults.loading && <Banner title="Loading...">
+              <p>Creating product</p>
+            </Banner>;
 
-            const success = mutationResults.data && (<p>
-              successfully created &nbsp; {mutationResults.data.productCreate.product.title}
-            </p>);
+            const error = mutationResults.error && <Banner title="Error" status="warning">
+              <p>Product could not be created</p>
+            </Banner>;
+
+            const success = mutationResults.data && (<Banner title="Success" status="success">
+              <p>Successfully created {mutationResults.data.productCreate.product.title}</p>
+            </Banner>);
 
             return (<Card sectioned="sectioned">
               <Form onSubmit={this.handleSubmit}>

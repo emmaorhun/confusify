@@ -1,6 +1,6 @@
 import React from 'react';
 import Fetch from 'react-fetch-component';
-import {ProductList} from '../../components';
+import {StarList, ProductList} from '../../components';
 import ApolloClient, {gql} from 'apollo-boost';
 import {ApolloProvider, Query} from 'react-apollo';
 import {AppProvider, Page, Heading, Spinner} from '@shopify/polaris';

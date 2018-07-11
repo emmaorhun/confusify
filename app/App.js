@@ -7,6 +7,7 @@ import Home from './routes/Home/Home.js';
 import Settings from './routes/Settings.js';
 import NotFound from './routes/NotFound.js';
 import CreateProduct from './routes/CreateProduct.js';
+import StarHome from './routes/StarHome.js';
 
 export default function() {
   return (
@@ -18,6 +19,7 @@ export default function() {
         <Route exact path="/settings" component={Settings}/>
         <Route exact path="/createproduct" component={CreateProduct}/>
         <Route exact path="/notfound" component={NotFound}/>
+        <Route exact path="/starlist" component={StarHome}/>
       </Switch>
     </React.Fragment>
   );
