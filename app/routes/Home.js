@@ -1,10 +1,12 @@
 import React from 'react';
-import {NewProduct} from '../components';
-import {Page, AppProvider} from '@shopify/polaris'
+import Fetch from 'react-fetch-component';
+import {StarList, ProductList, WelcomeMessage} from '../components';
+import {AppProvider, Page} from '@shopify/polaris';
 
-export default function CreateProduct() {
+export default function Home() {
+
   return (<AppProvider>
-    <Page title='Create Product' secondaryActions={[
+    <Page title="Home" secondaryActions={[
         {
           content: 'Home',
           url: '/'
@@ -16,7 +18,9 @@ export default function CreateProduct() {
           url: '/createproduct'
         }
       ]}>
-      <NewProduct/>
+      <WelcomeMessage/>
+      <ProductList/>
     </Page>
+
   </AppProvider>)
 }

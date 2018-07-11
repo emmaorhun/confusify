@@ -1,6 +1,6 @@
 import {gql} from 'apollo-boost';
 
-const ShopNameQuery = gql`
+const SHOP_NAME_QUERY = gql`
   query {
     shop {
       name
@@ -8,4 +8,4 @@ const ShopNameQuery = gql`
   }
 `;
 
-export default ShopNameQuery;
+export default SHOP_NAME_QUERY;

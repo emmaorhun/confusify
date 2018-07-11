@@ -69,9 +69,9 @@ class NewProduct extends React.Component {
             return (<Card sectioned="sectioned">
               <Form onSubmit={this.handleSubmit}>
                 <FormLayout>
-                  <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product ...Hehe ...</span>}/>
-                  <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Do not even worry about the currency </span>}/>
-                  <TextField value={description} multiline={3} label="Description" type="text" onChange={this.handleChange('description')} helpText={<span> You might want to remember what your intentions were </span>}/>
+                  <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product</span>}/>
+                  <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Bitcoin only </span>}/>
+                  <TextField value={description} multiline={3} label="Description" type="text" onChange={this.handleChange('description')} helpText={<span> Be descriptive </span>}/>
                   <Button onClick={() => mutate(createProduct, mutationResults)}>Submit</Button>
                 </FormLayout>
               </Form>
