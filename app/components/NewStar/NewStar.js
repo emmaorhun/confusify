@@ -11,11 +11,10 @@ import {
   Banner
 } from '@shopify/polaris';
 
-class NewProduct extends React.Component {
+class NewStar extends React.Component {
 
   state = {
     title: '',
-    price: 0,
     description: ''
   };
 
@@ -31,7 +30,7 @@ class NewProduct extends React.Component {
       }
     });
 
-    const {title, price, description} = this.state;
+    const {title, description} = this.state;
 
     function mutate(createProduct, mutationResults) {
       const productInput = {
@@ -70,7 +69,6 @@ class NewProduct extends React.Component {
               <Form onSubmit={this.handleSubmit}>
                 <FormLayout>
                   <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product</span>}/>
-                  <TextField value={price} label="Price" type="number" onChange={this.handleChange('price')} helpText={<span> Bitcoin only </span>}/>
                   <TextField value={description} multiline={3} label="Description" type="text" onChange={this.handleChange('description')} helpText={<span> Be descriptive </span>}/>
                   <Button onClick={() => mutate(createProduct, mutationResults)}>Submit</Button>
                 </FormLayout>
@@ -86,4 +84,4 @@ class NewProduct extends React.Component {
 
   }
 }
-export default NewProduct;
+export default NewStar;

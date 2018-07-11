@@ -9,6 +9,7 @@ import {
   Avatar
 } from '@shopify/polaris';
 
+
 export default function Settings() {
   return (<AppProvider>
     <Page title='Settings' secondaryActions={[
@@ -19,11 +20,15 @@ export default function Settings() {
           content: 'Settings',
           url: '/settings'
         }, {
-          content: 'New Product',
-          url: '/createproduct'
+          content: 'New Star',
+          url: '/newstar'
+        }, {
+          content: 'My Stars',
+          url: '/mystars'
         }
       ]}>
       <Card sectioned="sectioned" title='Your store is perfect just the way it is :)'></Card>
+
     </Page>
   </AppProvider>)
 }

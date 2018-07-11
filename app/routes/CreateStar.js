@@ -1,10 +1,10 @@
 import React from 'react';
-import {NewProduct} from '../components';
+import {NewStar} from '../components';
 import {Page, AppProvider} from '@shopify/polaris'
 
 export default function CreateProduct() {
   return (<AppProvider>
-    <Page title='Create Product' secondaryActions={[
+    <Page title='Create Star' secondaryActions={[
         {
           content: 'Home',
           url: '/'
@@ -12,11 +12,14 @@ export default function CreateProduct() {
           content: 'Settings',
           url: '/settings'
         }, {
-          content: 'New Product',
-          url: '/createproduct'
+          content: 'New Star',
+          url: '/newstar'
+        }, {
+          content: 'My Stars',
+          url: '/mystars'
         }
       ]}>
-      <NewProduct/>
+      <NewStar/>
     </Page>
   </AppProvider>)
 }

@@ -1,12 +1,10 @@
 import React from 'react';
-import Fetch from 'react-fetch-component';
-import {StarList, ProductList, WelcomeMessage} from '../components';
-import {AppProvider, Page} from '@shopify/polaris';
+import {ProductList} from '../components';
+import {Page, AppProvider} from '@shopify/polaris'
 
-export default function Home() {
-
+export default function CreateProduct() {
   return (<AppProvider>
-    <Page title="Starship" secondaryActions={[
+    <Page title='My Stars' secondaryActions={[
         {
           content: 'Home',
           url: '/'
@@ -21,9 +19,7 @@ export default function Home() {
           url: '/mystars'
         }
       ]}>
-      <WelcomeMessage/>
-      <StarList/>
+      <ProductList/>
     </Page>
-
   </AppProvider>)
 }
