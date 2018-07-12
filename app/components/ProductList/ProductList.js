@@ -68,9 +68,6 @@ export default function ProductList() {
                     <h3>
                       <TextStyle variation="strong">{title}</TextStyle>
                     </h3>
-
-
-                    
                   </ResourceList.Item>);
                 }}/>
             </Card>);

@@ -11,14 +11,17 @@ export default function Home() {
           content: 'Home',
           url: '/'
         }, {
-          content: 'Settings',
-          url: '/settings'
-        }, {
           content: 'New Star',
           url: '/newstar'
         }, {
           content: 'My Stars',
           url: '/mystars'
+        }, {
+          content: 'My Galaxies',
+          url: '/mygalaxies'
+        }, {
+          content: 'New Galaxy',
+          url: '/newgalaxy'
         }
       ]}>
       <WelcomeMessage/>

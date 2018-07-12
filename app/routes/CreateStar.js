@@ -9,14 +9,14 @@ export default function CreateProduct() {
           content: 'Home',
           url: '/'
         }, {
-          content: 'Settings',
-          url: '/settings'
-        }, {
           content: 'New Star',
           url: '/newstar'
         }, {
           content: 'My Stars',
           url: '/mystars'
+        }, {
+          content: 'My Galaxies',
+          url: '/mygalaxies'
         }
       ]}>
       <NewStar/>

@@ -20,7 +20,7 @@ export default function WelcomeMessage() {
           if (error)
             return `Error! ${error.message}`;
           const storeName = data.shop.name;
-          return (<Heading>Let's get your shop, {storeName}, down to business!</Heading>);
+          return (<Heading>Let's make your shop, {storeName}, out of this world!</Heading>);
         }
       }
       </Query>

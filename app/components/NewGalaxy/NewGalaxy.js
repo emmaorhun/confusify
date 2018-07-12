@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ApolloClient, {gql} from 'apollo-boost';
-import NEW_PRODUCT_MUTATION from './NewProductMutation'
+import NEW_COLLECTION_MUTATION from './NewCollectionMutation'
 import {ApolloProvider, Mutation, Query, graphql} from 'react-apollo';
 import {
   Form,
@@ -11,7 +11,7 @@ import {
   Banner
 } from '@shopify/polaris';
 
-class NewStar extends React.Component {
+class NewGalaxy extends React.Component {
 
   state = {
     title: '',
@@ -32,15 +32,16 @@ class NewStar extends React.Component {
 
     const {title, description} = this.state;
 
-    function mutate(createProduct) {
-      const productInput = {
+    function mutate(createCollection) {
+
+      const collectionInput = {
         title: title,
-        bodyHtml: description
+        descriptionHtml: description
       };
 
-      createProduct({
+      createCollection({
         variables: {
-          product: productInput
+          collection: collectionInput
         }
       });
 
@@ -48,28 +49,28 @@ class NewStar extends React.Component {
 
     return (<ApolloProvider client={client}>
 
-      <Mutation mutation={NEW_PRODUCT_MUTATION}>
+      <Mutation mutation={NEW_COLLECTION_MUTATION}>
         {
-          (createProduct, mutationResults) => {
+          (createCollection, mutationResults) => {
 
             const loading = mutationResults.loading && <Banner title="Loading...">
-              <p>Creating product</p>
+              <p>Creating collection</p>
             </Banner>;
 
             const error = mutationResults.error && <Banner title="Error" status="warning">
-              <p>Product could not be created</p>
+              <p>Collection could not be created</p>
             </Banner>;
 
             const success = mutationResults.data && (<Banner title="Success" status="success">
-              <p>Successfully created {mutationResults.data.productCreate.product.title}</p>
+              <p>Successfully created {mutationResults.data.collectionCreate.collection.title}</p>
             </Banner>);
 
             return (<Card sectioned="sectioned">
               <Form onSubmit={this.handleSubmit}>
                 <FormLayout>
-                  <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your product</span>}/>
+                  <TextField value={title} onChange={this.handleChange('title')} label="Title" type="text" helpText={<span> This will be the name of your collection</span>}/>
                   <TextField value={description} multiline={3} label="Description" type="text" onChange={this.handleChange('description')} helpText={<span> Be descriptive </span>}/>
-                  <Button onClick={() => mutate(createProduct)}>Submit</Button>
+                  <Button onClick={() => mutate(createCollection)}>Submit</Button>
                 </FormLayout>
               </Form>
               {loading}
@@ -83,4 +84,4 @@ class NewStar extends React.Component {
 
   }
 }
-export default NewStar;
+export default NewGalaxy;
