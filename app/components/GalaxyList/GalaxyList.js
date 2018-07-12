@@ -63,8 +63,13 @@ export default function GalaxyList() {
                     plural: 'galaxies'
                   }} showHeader={true} items={galaxies} renderItem={(galaxy) => {
                     const {id, title, description} = galaxy.node;
-                    const imgUrl = galaxy.node.image.transformedSrc;
-                    const media =  <Thumbnail customer size="medium" source={imgUrl}/>
+                    let media;
+                    if(galaxy.node.image){
+                      media =  <Thumbnail customer size="medium" source={galaxy.node.image.transformedSrc}/>
+                    } else {
+                      media = <Avatar customer={false} size="medium" initials={title[0]} />
+                    }
+
                     return (<ResourceList.Item id={id} media={media} accessibilityLabel={`View details for ${title}`}>
                       <h3>
                         <TextStyle variation="strong">{title}</TextStyle>
