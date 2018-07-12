@@ -6,7 +6,7 @@ import {AppProvider, Page} from '@shopify/polaris';
 export default function Home() {
 
   return (<AppProvider>
-    <Page title="Starship" secondaryActions={[
+    <Page title="Starzaar" secondaryActions={[
         {
           content: 'Home',
           url: '/'

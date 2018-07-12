@@ -17,6 +17,9 @@ export default function CreateProduct() {
         }, {
           content: 'My Galaxies',
           url: '/mygalaxies'
+        }, {
+          content: 'New Galaxy',
+          url: '/newgalaxy'
         }
       ]}>
       <GalaxyList/>
