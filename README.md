@@ -1,2 +1,2 @@
-# BIG THINGS COMING
-Confusify is being rebranded.
+# Starbazaar 
+A bazaar to purchase and manage astral products such as stars and galaxies in a Shopify store.
